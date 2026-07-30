@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catering</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #088f62, #076e93);
+    color: white;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(to right, #011811bf, #022e216f);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    background: yellow;
+    color: brown;
+}
+
+/* Body Background */
+body {
+    background-image: url("ni.jpg");
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    color: darkblue;
+}
+
+h2:hover {
+    transform: scale(1.3);
+}
+
+/* Logo */
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+
+/* IMAGE SCROLL SECTION */
+.image-container {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 50px;
+}
+
+/* IMAGES */
+.image-container img {
+    width: 450px;
+    height: 450px;
+    margin: 10px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+
+/* IMAGE SCROLL SECTION */
+.image-container {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 50px;
+}
+
+/* IMAGES */
+.image-container img {
+    width: 450px;
+    height: 450px;
+    margin: 10px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+/* ANIMATION */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* APPLY ANIMATION */
+.image-track {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+}
+
+
+
+/* APPLY ANIMATION */
+.image-track {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <img src="hg.jpeg" alt="Catering Logo" class="logo">
+    <h1>City Catering Management System</h1>
+</header>
+
+<!-- Navigation -->
+<div class="navbar">
+<ul>
+    <li><a href="hh.html">Home</a></li>
+   
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">About</a></li>
+</ul>
+</div>
+
+
+
+<!-- IMAGE FLOW -->
+<div class="image-container">
+    <div class="image-track">
+        <img src="as.jpg">
+        <img src="asp.jpg">
+        <img src="ml.jpg">
+        <img src="4.jpg">
+       
+
+        <!-- Repeat images for smooth loop -->
+        <img src="as.jpg">
+        <img src="2.webp">
+        <img src="3.jpeg">
+        <img src="4.jpg">
+        
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section>
+    <h2>City Catering Management System</h2>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+  <!DOCTYPE html>
+<html>
+<head>
+<title>Catering Login</title>
+<link rel="stylesheet" href="https://cloudflare.com">
+
+<style>
+*{ margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body{ background:#fff7ed; }
+
+header{ background: linear-gradient(to right, #088f62, #076e93); color: white; text-align: center; padding: 20px 0 10px 0; font-family:Forte, sans-serif; }
+.logo{ width:80px; height:80px; border-radius:50%; display:block; margin:auto; margin-bottom:10px; border: 2px solid white; }
+
+.navbar{ background: #011811; display:flex;  }
+.navbar ul{ list-style:none; display:flex; }
+.navbar ul li a{ display:block; padding:15px 25px; color:white; text-decoration:none; font-weight: bold; transition: 0.3s; }
+.navbar ul li a:hover{ color: #fed7aa; background: rgba(255,255,255,0.1); }
+
+/* Main Container */
+.formbox { width: 400px; margin: 50px auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+
+/* Tab Navigation */
+.tab-nav { display: flex; background: #f1f5f9; }
+.tab-nav label { flex: 1; text-align: center; padding: 15px; cursor: pointer; font-weight: bold; color: #64748b; transition: 0.3s; border-bottom: 3px solid transparent; }
+
+input[type="radio"] { display: none; }
+
+/* Active Tab Styles */
+#tab1:checked ~ .tab-nav label[for="tab1"] { color: #076e93; border-bottom: 3px solid #076e93; background: white; }
+#tab2:checked ~ .tab-nav label[for="tab2"] { color: #088f62; border-bottom: 3px solid #088f62; background: white; }
+#tab3:checked ~ .tab-nav label[for="tab3"] { color: #f97316; border-bottom: 3px solid #f97316; background: white; }
+
+/* Form Visibility */
+.form-content { padding: 30px; }
+.form-panel { display: none; animation: fadeIn 0.5s; }
+
+#tab1:checked ~ .form-content #admin-panel,
+#tab2:checked ~ .form-content #customer-panel,
+#tab3:checked ~ .form-content #owner-panel { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Input Styling */
+.input-group { position: relative; margin-bottom: 20px; }
+.input-group i { position: absolute; left: 15px; top: 12px; color: #94a3b8; }
+.input-group input { width: 100%; padding: 12px 12px 12px 45px; border: 2px solid #e2e8f0; border-radius: 10px; outline: none; transition: 0.3s; }
+.input-group input:focus { border-color: #cbd5e1; }
+
+/* DIFFERENT BUTTON STYLES */
+
+/* Admin Button */
+.btn-admin { background: #076e93; color: white; width: 100%; padding: 12px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
+/* Customer Form Specifics (Green Theme) */
+#customer-panel h3 { color: #088f62; margin-bottom: 20px; text-align: center; }
+.btn-customer { background: #088f62; color: white; width: 100%; padding: 12px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.btn-customer:hover { background: #066b4a; box-shadow: 0 5px 15px rgba(8, 143, 98, 0.3); }
+
+/* Owner Form Specifics (Orange/Professional Theme) */
+#owner-panel h3 { color: #f97316; margin-bottom: 20px; text-align: center; }
+.btn-owner { background: #f97316; color: white; width: 100%; padding: 12px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.btn-owner:hover { background: #ea580c; box-shadow: 0 5px 15px rgba(249, 115, 22, 0.3); }
+
+.clear-link { display: block; text-align: center; margin-top: 15px; color: #ef4444; text-decoration: none; font-size: 0.9rem; }
+.reg-link { display: block; text-align: center; margin-top: 15px; font-weight: bold; text-decoration: none; }
+.customer-reg { color: #088f62; }
+.owner-reg { color: #f97316; }
+
+</style>
+<script>
+    function logchek()
+    {
+        n=document.login.uname.value;
+        p=document.login.pass.value;
+        if(n=="")
+    {
+        alert("plse enter name");
+        document.login.uname.focus();
+        return false;
+    
+    }
+       else if(p=="")
+    {
+        alert("plse enter pass");
+        document.login.pass.focus();
+        return false;
+    
+    }
+     else if(n=="akasha" && p=="ask")
+    {
+        alert("valid account");
+        
+    }
+       else
+    {
+        alert("invalid user name and password");
+        document.login.uname.value="";
+        document.login.pass.value="";
+        document.login.uname.focus();
+        return false;
+    
+    }
+    }
+</script>
+</head>
+
+<body>
+
+<header>
+    <img src="hg.jpeg" class="logo">
+    <h1>City Catering Management System</h1>
+</header>
+
+<div class="navbar">
+    <ul>
+        <li><a href="home.php">Home</a></li>
+       
+    </ul>
+</div>
+
+<div class="formbox">
+    <!-- Radio logic -->
+    <input type="radio" name="login-tab" id="tab1"checked>
+    
+    <input type="radio" name="login-tab" id="tab3">
+
+    <!-- Tab Headings -->
+    <div class="tab-nav">
+        <label for="tab1"><i class="fa-solid fa-user-shield"></i> Admin</label>
+        
+        <label for="tab3"><i class="fa-solid fa-shop"></i> Owner</label>
+    </div>
+
+    <div class="form-content">
+        
+        <!-- ADMIN FORM -->
+        <div class="form-panel" id="admin-panel">
+            <form name="login" method="post" action="adminf.html" >
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="text" name="uname" placeholder="Admin Username" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" name="pass" placeholder="Password" >
+                </div>
+                <button type="submit" value="login" onclick="return logchek();"  class="btn-admin">System Login</button>
+            </form>
+        </div>
+
+       
+        <!-- OWNER FORM (Orange Theme) -->
+        <div class="form-panel" id="owner-panel">
+            <h3>Business Portal</h3>
+            <form method="post" action="ownlog.php">
+                <div class="input-group">
+                    <i class="fa-solid fa-id-card" style="color:#f97316;"></i>
+                    <input type="text" name="id" placeholder="Owner ID / Username" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-shield-halved" style="color:#f97316;"></i>
+                    <input type="password" name="pass" placeholder="Business Password" required>
+                </div>
+                <button type="submit" class="btn-owner">Login to Dashboard</button>
+                <a href="ownreg.php" class="reg-link owner-reg">Register Your Catering Service</a>
+                <button type="reset" style="background:none; border:none; cursor:pointer; width:100%; margin-top:10px; color:#999;">Clear Form</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

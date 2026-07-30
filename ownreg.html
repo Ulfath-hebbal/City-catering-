@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catering</title>
+
+<style>
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #088f62, #076e93);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 10px;
+    border: 3px solid white;
+    background-color: white;
+    padding: 5px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.7);
+}
+
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(to right, #011811bf, #022e216f);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar ul li {
+    position: relative;
+}
+
+.navbar ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    background: yellow;
+    color: brown;
+}
+
+/* Dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: linear-gradient(to right, #011811bf, #022e216f);
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 12px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Body Background */
+body {
+    background-image: url("ni.jpg");
+    background-size: cover;
+}
+
+/* Form Box */
+.formbox {
+    width: 500px;
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    margin: 30px auto;
+    border-radius: 10px;
+    border: 1px solid gray;
+    box-shadow: 0px 0px 15px gray;
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: brown;
+    background-color: yellow;
+    height: 35px;
+    border-radius: 20px;
+    line-height: 35px;
+}
+
+/* Form */
+label {
+    font-size: 16px;
+    display: block;
+    margin-top: 10px;
+}
+
+input, textarea {
+    width: 95%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+/* Buttons */
+input[type="submit"] {
+    background-color: green;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: darkgreen;
+}
+
+input[type="reset"] {
+    background-color: red;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="reset"]:hover {
+    background-color: darkred;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+    <img src="hg.jpeg" alt="Catering Logo" class="logo">
+    <h1>City Catering Management System</h1>
+</header>
+
+<!-- Navbar -->
+<div class="navbar">
+<ul>
+    <li><a href="hh.html">Home</a></li>
+
+    <li class="dropdown">
+        <a href="#">Owner</a>
+        
+    </li>
+
+    <li class="dropdown">
+        <a href="#">Gallery</a>
+        <div class="dropdown-content">
+            <a href="#">View Gallery</a>
+        </div>
+    </li>
+</ul>
+</div>
+
+<!-- Form -->
+<div class="formbox">
+<h2>Owner Registration</h2>
+
+<form method="post" action="or.php">
+
+<label>Owner Name</label>
+<input type="text" name="uname" placeholder="Enter Owner Name" required>
+
+<label>Email</label>
+<input type="email" name="mail" placeholder="Enter Email" required>
+
+<label>Phone Number</label>
+<input type="tel" name="num" placeholder="Enter Phone Number" required>
+
+<label>Owner Address</label>
+<textarea name="area" placeholder="Enter Address" required></textarea>
+
+<label>Canter Service Name</label>
+<textarea name="scadd" placeholder="Enter Service Name" required></textarea>
+
+
+<label>Create Password</label>
+<input type="password" name="pass" placeholder="Password" required>
+
+<input type="submit" value="Register">
+<input type="reset" value="Clear">
+
+</form>
+</div>
+
+<!-- Footer -->
+<footer>
+<p>© 2026 City Catering Management System</p>
+</footer>
+
+</body>
+</html>

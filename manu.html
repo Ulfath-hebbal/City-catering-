@@ -1,0 +1,80 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Menu</title>
+
+<style>
+body{
+font-family:Arial;
+background:#f1f5f9;
+padding:20px;
+}
+
+a{
+text-decoration:none;
+color:white;
+background:#14532d;
+padding:10px;
+border-radius:5px;
+}
+
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+background:white;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+text-align:center;
+}
+
+input{
+padding:10px;
+margin:5px;
+}
+
+.btn{
+padding:5px 10px;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.add{background:#2563eb;}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="owner_dashboard.php">⬅ Back</a>
+
+<h2>Manage Menu</h2>
+
+<form method="POST" action="manu.php">
+<input type="text" name="food" placeholder="Food Name" required>
+<input type="text" name="price" placeholder="Price" required>
+<button class="btn add" name="add">Add</button>
+</form>
+
+<table>
+<tr>
+<th>oid</th>
+<th>Food</th>
+<th>Price</th>
+<th>Action</th>
+</tr>
+
+
+
+</table>
+
+</body>
+</html>

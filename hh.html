@@ -1,0 +1,142 @@
+ <?php
+session_start();
+/* 1. DATABASE CONNECTION */
+$con = mysqli_connect("localhost", "root", "", "citycatering");
+if (!$con) { die("Database Connection Error"); }
+
+$search_result = null;
+$error_message = "";
+
+/* 2. HANDLE SEARCH REQUEST */
+if (isset($_POST['search_id'])) {
+    $order_id = mysqli_real_escape_string($con, $_POST['order_id']);
+    
+    // Fetch the specific order by ID
+    $sql = "SELECT * FROM orders WHERE id = '$order_id'";
+    $rs = mysqli_query($con, $sql);
+    
+    if (mysqli_num_rows($rs) > 0) {
+        $search_result = mysqli_fetch_assoc($rs);
+    } else {
+        $error_message = "No booking found with ID #$order_id";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Booking - City Catering</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #fff7ed; min-height: 100vh; display: flex; flex-direction: column; }
+
+        header { background: linear-gradient(to right, #088f62, #076e93); color: white; text-align: center; padding: 20px 0; }
+        .navbar { background: #011811; display: flex; justify-content: center; }
+        .navbar a { padding: 15px 25px; color: white; text-decoration: none; font-weight: bold; }
+
+        .container { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+        
+        /* Search Box Styling */
+        .search-card { background: white; width: 100%; max-width: 500px; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 30px; border-top: 5px solid #088f62; }
+        .search-card h2 { color: #088f62; margin-bottom: 20px; text-align: center; }
+        
+        .input-group { display: flex; gap: 10px; }
+        input[type="text"] { flex: 1; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; outline: none; font-size: 16px; }
+        input[type="text"]:focus { border-color: #088f62; }
+        
+        .btn-search { background: #088f62; color: white; border: none; padding: 0 25px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-search:hover { background: #066b4a; }
+
+        /* Result Card Styling */
+        .result-card { background: white; width: 100%; max-width: 600px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .result-header { background: #f8fafc; padding: 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+        .status-badge { padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .Pending { background: #fef3c7; color: #92400e; }
+        .Confirmed { background: #dcfce7; color: #166534; }
+
+        .result-body { padding: 30px; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; }
+        .label { color: #64748b; font-weight: 600; font-size: 14px; }
+        .value { font-weight: 700; color: #1e293b; }
+        
+        .error { color: #ef4444; background: #fee2e2; padding: 15px; border-radius: 8px; width: 100%; max-width: 500px; text-align: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>City Catering System</h1>
+    <p>Track Your Booking Status</p>
+</header>
+
+<div class="navbar">
+    <a href="publicmain.php">Home</a>
+    <a href="booking.php">New Booking</a>
+</div>
+
+<div class="container">
+    <!-- SEARCH FORM -->
+    <div class="search-card">
+        <h2>Find Your Order</h2>
+        <form method="post">
+            <div class="input-group">
+                <input type="text" name="order_id" placeholder="Enter Order ID (e.g. 101)" required>
+                <button type="submit" name="search_id" class="btn-search">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ERROR MESSAGE -->
+    <?php if($error_message): ?>
+        <div class="error"><?php echo $error_message; ?></div>
+    <?php endif; ?>
+
+    <!-- SEARCH RESULTS -->
+    <?php if($search_result): ?>
+        <div class="result-card">
+            <div class="result-header">
+                <span style="font-weight: 800; color: #088f62;">ORDER #<?php echo $search_result['id']; ?></span>
+                <span class="status-badge <?php echo $search_result['status']; ?>">
+                    <?php echo $search_result['status']; ?>
+                </span>
+            </div>
+            
+            <div class="result-body">
+                <div class="info-row">
+                    <span class="label">Customer Name</span>
+                    <span class="value"><?php echo htmlspecialchars($search_result['customer_name']); ?></span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Event Date</span>
+                    <span class="value"><?php echo date("d M Y", strtotime($search_result['event_date'])); ?></span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Event Type</span>
+                    <span class="value"><?php echo htmlspecialchars($search_result['event_type']); ?></span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Guest Count</span>
+                    <span class="value"><?php echo ($search_result['members_morning'] + $search_result['members_night']); ?></span>
+                </div>
+                <div class="info-row" style="border-bottom: none; margin-top: 20px;">
+                    <span class="label" style="font-size: 18px; color: #1e293b;">Total Bill</span>
+                    <span class="value" style="font-size: 22px; color: #088f62;">₹<?php echo number_format($search_result['total_bill'], 2); ?></span>
+                </div>
+                
+                <?php if(!empty($search_result['extra_items'])): ?>
+                    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-top: 10px; font-size: 13px;">
+                        <strong>Special Note:</strong> <?php echo htmlspecialchars($search_result['extra_items']); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>
+
+</body>
+</html>

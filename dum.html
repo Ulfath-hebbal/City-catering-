@@ -1,0 +1,61 @@
+ <?php
+// DB Connection - Replace with your actual credentials
+$conn = mysqli_connect("localhost", "root", "", "catering_db");
+
+// Get the search term from URL (from dropdown or search page)
+$event_type = isset($_GET['event']) ? mysqli_real_escape_string($conn, $_GET['event']) : '';
+
+// Query to find menus where 'event_type' matches the search
+$query = "SELECT * FROM menus WHERE event_type LIKE '%$event_type%'";
+$rs = mysqli_query($conn, $query);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Menus - City Catering</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #fff7ed; }
+        header { background: linear-gradient(to right, #088f62, #076e93); color: white; text-align: center; padding: 20px; }
+        .container { width: 90%; margin: 30px auto; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .food-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-top: 5px solid #f97316; transition: 0.3s; }
+        .food-card:hover { transform: translateY(-5px); }
+        .card-content { padding: 20px; }
+        .food-name { font-size: 20px; color: #14532d; font-weight: bold; }
+        .price-tag { font-size: 18px; color: #ef4444; font-weight: bold; margin: 10px 0; }
+        .order-btn { width: 100%; background: #16a34a; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+<header><h1>City Catering Management</h1></header>
+
+<div class="container">
+    <h2>Menus for: <?php echo $event_type ? htmlspecialchars($event_type) : "All Events"; ?></h2>
+    <br>
+    <div class="menu-grid">
+        <?php 
+        if(mysqli_num_rows($rs) > 0) {
+            while($row = mysqli_fetch_array($rs)) { 
+        ?>
+            <div class="food-card">
+                <div class="card-content">
+                    <div class="food-name"><?php echo $row['food']; ?></div>
+                    <div class="price-tag">₹<?php echo $row['price']; ?></div>
+                    <p style="font-size: 12px; color: #666;">Service: <?php echo $row['catering_name']; ?></p>
+                    <form action="place_order.php" method="POST" style="margin-top:10px;">
+                        <input type="hidden" name="food_id" value="<?php echo $row['id']; ?>">
+                        <button type="submit" class="order-btn">Order Now</button>
+                    </form>
+                </div>
+            </div>
+        <?php 
+            } 
+        } else {
+            echo "<p>No menus found for this category. <a href='catering_search.php'>Try another search.</a></p>";
+        }
+        ?>
+    </div>
+</div>
+</body>
+</html>

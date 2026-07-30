@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Owner Dashboard</title>
+    <style>
+        /* Base styles from f2 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background: #fff7ed; /* Light cream from f2 */
+            color: #333;
+        }
+
+        /* Sidebar - Updated to match f2's dark green theme */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background: linear-gradient(to bottom, #011811, #088f62);
+            padding: 20px 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar h2 {
+            color: white;
+            text-align: center;
+            font-family: Forte, sans-serif; /* Matching f2 header font */
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fed7aa; /* Light orange text */
+            padding: 12px 25px;
+            text-decoration: none;
+            margin: 5px 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        .sidebar a:hover {
+            background: #f97316; /* Active orange from f2 */
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main {
+            flex: 1;
+            padding: 0;
+        }
+
+        /* Top Header for Dashboard */
+        .main-header {
+            background: linear-gradient(to right, #088f62, #076e93);
+            color: white;
+            padding: 20px 40px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .content-body {
+            padding: 40px;
+        }
+
+        /* Card Style for content */
+        .welcome-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #f97316;
+        }
+
+        h1 { margin-top: 0; color: #14532d; }
+
+        
+        /* Main Content Area */
+        .main {
+            flex: 1;
+            margin-left: 240px; /* Offset for fixed sidebar */
+        }
+
+        .main-header {
+            background: linear-gradient(to right, #088f62, #076e93);
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Owner Panel</h2>
+    <a href="owner_dashboard.php">Dashboard</a>
+    <a href="manu.php">Menu</a>
+    <a href="orders.php">Orders</a>
+    <a href="customers.php">Customers</a>
+    <a href="payments.php">Payments</a>
+    <a href="settings.php">Settings</a>
+</div>
+<div class="main">
+    <div class="main-header">
+        <h3>City Catering Management System</h3>
+        <div>
+            <span style="margin-right: 20px;">ID: <?php echo $oid; ?></span>
+            <a href="logout.php" class="logout-link">Logout</a>
+        </div>
+    </div>
+
+    
+    <div class="content-body">
+        <div class="welcome-card">
+            <h1>Welcome to Dashboard</h1>
+            <p>Select any option from the sidebar to manage your catering business.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
